@@ -2,6 +2,7 @@
 using menu_api.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace menu_api.Controllers
 {
@@ -10,10 +11,12 @@ namespace menu_api.Controllers
     public class MenuItemController : ControllerBase
     {
         private readonly MenuItemService _menuService;
+        private readonly ILogger<MenuItem> _logger;
 
-        public MenuItemController(MenuItemService menuService)
+        public MenuItemController(MenuItemService menuService, ILogger<MenuItem> logger)
         {
             _menuService = menuService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -45,6 +48,7 @@ namespace menu_api.Controllers
             }
             catch(Exception ex)
             {
+                _logger.Log(LogLevel.Information,"Post method failed : {ex}", ex);
                 return Forbid("Forbidden...");
             }
             return NoContent();
@@ -57,6 +61,8 @@ namespace menu_api.Controllers
 
             if (item is null)
             {
+                _logger.Log(LogLevel.Information, "Item Not Found with id : {id}", id);
+
                 return NotFound();
             }
 
@@ -74,6 +80,7 @@ namespace menu_api.Controllers
 
             if (item is null)
             {
+                _logger.Log(LogLevel.Information, "Item Not Found with id : {id}", id);
                 return NotFound();
             }
 

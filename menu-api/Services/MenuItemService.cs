@@ -18,8 +18,10 @@ public class MenuItemService
             menuDatabaseSettings.Value.BooksCollectionName);
     }
 
-    public async Task<List<MenuItem>> GetAsync() =>
-        await _menuCollection.Find(_ => true).ToListAsync();
+    public async Task<List<MenuItem>> GetAsync()
+    {
+        return await _menuCollection.Find(_ => true).ToListAsync();
+    }
 
     public async Task<MenuItem?> GetAsync(string id) =>
         await _menuCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
