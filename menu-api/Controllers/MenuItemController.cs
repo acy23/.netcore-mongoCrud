@@ -39,11 +39,11 @@ namespace menu_api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(MenuItem newBook)
+        public async Task<IActionResult> Post(MenuItem item)
         {
             try
             {
-                await _menuService.CreateAsync(newBook);
+                await _menuService.CreateAsync(item);
 
             }
             catch(Exception ex)
@@ -66,7 +66,7 @@ namespace menu_api.Controllers
                 return NotFound();
             }
 
-            updatedBook.Id = item.Id;
+            //checkk : updatedBook.Id = id;
 
             await _menuService.UpdateAsync(id, updatedBook);
 
