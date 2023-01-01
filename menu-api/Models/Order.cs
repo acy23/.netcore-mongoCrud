@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 
 namespace menu_api.Models;
-public class Order
+public class Order : MongoDbEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

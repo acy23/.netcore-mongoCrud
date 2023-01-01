@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace menu_api.Models;
 
-public class MenuItem
+public class MenuItem : MongoDbEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

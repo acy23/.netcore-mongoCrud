@@ -84,7 +84,7 @@ namespace menu_api.Controllers
                 return NotFound();
             }
 
-            await _menuService.RemoveAsync(id);
+            await _menuService.DeleteAsync(id);
 
             return NoContent();
         }
